@@ -23,7 +23,7 @@ module.exports = {
     version: "0.6.12",
     optimizer: {
       enabled: true,
-      runs: 200
+      runs: 9999
     }
   },
 
@@ -45,6 +45,6 @@ module.exports = {
     sources: "./contracts",
     tests: "./test",
     cache: "./cache",
-    artifacts: "./artifacts"
+    artifacts: "./build"
   }
 };

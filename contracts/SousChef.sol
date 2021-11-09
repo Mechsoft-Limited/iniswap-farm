@@ -36,8 +36,8 @@ contract SousChef {
         uint256 accRewardPerShare; // Accumulated reward per share, times 1e12. See below.
     }
 
-    // The SYRUP TOKEN!
-    IBEP20 public syrup;
+    // The SAUCE TOKEN!
+    IBEP20 public sauce;
     // rewards created per block.
     uint256 public rewardPerBlock;
 
@@ -64,7 +64,7 @@ contract SousChef {
         uint256 _startBlock,
         uint256 _endBlock
     ) public {
-        syrup = _syrup;
+        sauce = _syrup;
         rewardPerBlock = _rewardPerBlock;
         startBlock = _startBlock;
         bonusEndBlock = _endBlock;
@@ -96,7 +96,7 @@ contract SousChef {
         PoolInfo storage pool = poolInfo;
         UserInfo storage user = userInfo[_user];
         uint256 accRewardPerShare = pool.accRewardPerShare;
-        uint256 stakedSupply = syrup.balanceOf(address(this));
+        uint256 stakedSupply = sauce.balanceOf(address(this));
         if (block.number > pool.lastRewardBlock && stakedSupply != 0) {
             uint256 multiplier = getMultiplier(pool.lastRewardBlock, block.number);
             uint256 tokenReward = multiplier.mul(rewardPerBlock);
@@ -110,7 +110,7 @@ contract SousChef {
         if (block.number <= poolInfo.lastRewardBlock) {
             return;
         }
-        uint256 syrupSupply = syrup.balanceOf(address(this));
+        uint256 syrupSupply = sauce.balanceOf(address(this));
         if (syrupSupply == 0) {
             poolInfo.lastRewardBlock = block.number;
             return;
@@ -128,7 +128,7 @@ contract SousChef {
         require (_amount > 0, 'amount 0');
         UserInfo storage user = userInfo[msg.sender];
         updatePool();
-        syrup.safeTransferFrom(address(msg.sender), address(this), _amount);
+        sauce.safeTransferFrom(address(msg.sender), address(this), _amount);
         // The deposit behavior before farming will result in duplicate addresses, and thus we will manually remove them when airdropping.
         if (user.amount == 0 && user.rewardPending == 0 && user.rewardDebt == 0) {
             addressList.push(address(msg.sender));
@@ -147,7 +147,7 @@ contract SousChef {
         require(user.amount >= _amount, "withdraw: not enough");
 
         updatePool();
-        syrup.safeTransfer(address(msg.sender), _amount);
+        sauce.safeTransfer(address(msg.sender), _amount);
 
         user.rewardPending = user.amount.mul(poolInfo.accRewardPerShare).div(1e12).sub(user.rewardDebt).add(user.rewardPending);
         user.amount = user.amount.sub(_amount);
@@ -159,7 +159,7 @@ contract SousChef {
     // Withdraw without caring about rewards. EMERGENCY ONLY.
     function emergencyWithdraw() public {
         UserInfo storage user = userInfo[msg.sender];
-        syrup.safeTransfer(address(msg.sender), user.amount);
+        sauce.safeTransfer(address(msg.sender), user.amount);
         emit EmergencyWithdraw(msg.sender, user.amount);
         user.amount = 0;
         user.rewardDebt = 0;

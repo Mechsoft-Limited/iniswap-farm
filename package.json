@@ -9,8 +9,9 @@
     "contracts"
   ],
   "scripts": {
-    "migrate": "truffle migrate --network bscTestnet --reset",
-    "compile": "truffle compile --network bscTestnet",
+    "migrate:reset": "truffle migrate --network binanceTestnet --reset",
+    "migrate": "truffle migrate --network binanceTestnet",
+    "compile": "truffle compile --network binanceTestnet",
     "test": "npx builder test",
     "build": "npx builder compile",
     "coverage": "npx builder coverage"

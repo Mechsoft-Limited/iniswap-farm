@@ -11,3 +11,5 @@ coverage.json
 .secret
 mockbep.txt
 coverage.json
+addresses.txt
+bin

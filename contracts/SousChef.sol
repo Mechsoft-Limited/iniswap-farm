@@ -59,12 +59,12 @@ contract SousChef {
     event EmergencyWithdraw(address indexed user, uint256 amount);
 
     constructor(
-        IBEP20 _syrup,
+        IBEP20 _souce,
         uint256 _rewardPerBlock,
         uint256 _startBlock,
         uint256 _endBlock
     ) public {
-        sauce = _syrup;
+        sauce = _souce;
         rewardPerBlock = _rewardPerBlock;
         startBlock = _startBlock;
         bonusEndBlock = _endBlock;

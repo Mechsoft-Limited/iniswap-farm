@@ -12,9 +12,10 @@ module.exports = {
   networks: {
     binanceTestnet: {
       network_id:97,
+      networkCheckTimeout: 999999,
       provider: () => new HDWalletProvider({
         privateKeys:[privateKey], 
-        chainId:97,
+        chainId:97,        
         providerOrUrl:`https://data-seed-prebsc-1-s1.binance.org:8545/`
       }),
     },

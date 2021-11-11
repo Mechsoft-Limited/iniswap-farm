@@ -13,7 +13,7 @@ contract SousChef {
 
     // Info of each user.
     struct UserInfo {
-        uint256 amount;   // How many SYRUP tokens the user has provided.
+        uint256 amount;   // How many SAUCE tokens the user has provided.
         uint256 rewardDebt;  // Reward debt. See explanation below.
         uint256 rewardPending;
         //
@@ -22,7 +22,7 @@ contract SousChef {
         //
         //   pending reward = (user.amount * pool.accRewardPerShare) - user.rewardDebt + user.rewardPending
         //
-        // Whenever a user deposits or withdraws SYRUP tokens to a pool. Here's what happens:
+        // Whenever a user deposits or withdraws SAUCE tokens to a pool. Here's what happens:
         //   1. The pool's `accRewardPerShare` (and `lastRewardBlock`) gets updated.
         //   2. User receives the pending reward sent to his/her address.
         //   3. User's `amount` gets updated.
@@ -59,12 +59,12 @@ contract SousChef {
     event EmergencyWithdraw(address indexed user, uint256 amount);
 
     constructor(
-        IBEP20 _souce,
+        IBEP20 _sauce,
         uint256 _rewardPerBlock,
         uint256 _startBlock,
         uint256 _endBlock
     ) public {
-        sauce = _souce;
+        sauce = _sauce;
         rewardPerBlock = _rewardPerBlock;
         startBlock = _startBlock;
         bonusEndBlock = _endBlock;
@@ -110,15 +110,15 @@ contract SousChef {
         if (block.number <= poolInfo.lastRewardBlock) {
             return;
         }
-        uint256 syrupSupply = sauce.balanceOf(address(this));
-        if (syrupSupply == 0) {
+        uint256 sauceSupply = sauce.balanceOf(address(this));
+        if (sauceSupply == 0) {
             poolInfo.lastRewardBlock = block.number;
             return;
         }
         uint256 multiplier = getMultiplier(poolInfo.lastRewardBlock, block.number);
         uint256 tokenReward = multiplier.mul(rewardPerBlock);
 
-        poolInfo.accRewardPerShare = poolInfo.accRewardPerShare.add(tokenReward.mul(1e12).div(syrupSupply));
+        poolInfo.accRewardPerShare = poolInfo.accRewardPerShare.add(tokenReward.mul(1e12).div(sauceSupply));
         poolInfo.lastRewardBlock = block.number;
     }
 

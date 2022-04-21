@@ -35,11 +35,13 @@ module.exports = {
      // confirmations: 2,    // # of confs to wait between deployments. (default: 0)
       timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
       skipDryRun: true,
+      gasPrice:5000000000,
+      websockets: true,
       provider: () => new HDWalletProvider(
         {
           privateKeys:[mnemonic], 
-          chainId:56,
-          providerOrUrl:`https://bsc-dataseed.binance.org/`
+          chainId:56,         
+         providerOrUrl:'https://bsc-dataseed1.defibit.io/'//`https://bsc-dataseed.binance.org/`
         }
         ),
     },

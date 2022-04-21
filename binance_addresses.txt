@@ -1,8 +1,8 @@
 
-   initoken: 0x038DaAfb47f875D60DAc2Ab69A5014919AfdD5E3
+   initoken: 0x4EFB710AB24396c29d2313B3518dA6BDc2F5c53d
    bnbstaking: {bnbStaking.address}
-   masterchef: 0x7932a7597B602f7669197063D3eF7d3FeC79170B  
-   saucebar: 0x361f5E7420798e4B3DCC81d9765583B269779559
+   masterchef: 0x97f30C9acb7d8C53d306C858F560C9135E10D674  
+   saucebar: 0xC7e6AbD8356257f13458790222729Ec4E4b433B4
    souschef: {sousChef.address}
    lottery: {lotteryRewardPool.address}
    timelock: {timelock.address}

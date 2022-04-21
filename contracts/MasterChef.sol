@@ -113,7 +113,7 @@ contract MasterChef is Ownable {
     function updateMultiplier(uint256 multiplierNumber) public onlyOwner {
         BONUS_MULTIPLIER = multiplierNumber;
     }
-
+   
     function poolLength() external view returns (uint256) {
         return poolInfo.length;
     }
